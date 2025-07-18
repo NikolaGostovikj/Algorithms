@@ -25,6 +25,10 @@ public class Vertex {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
 
 }
 

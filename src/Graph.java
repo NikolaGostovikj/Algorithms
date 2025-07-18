@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,23 +42,42 @@ public class Graph {
     }
 
     Graph createGraph() {
-        Graph graph = new Graph(); //add nodes from 1 to 8
-        for (int i = 1; i <= 8 ; i++) {
+        Graph graph = new Graph();
+        Map<Integer, Vertex> vertices = new HashMap<>();
+
+        for (int i = 1; i <= 8; i++) {
             Vertex vertex = new Vertex(i);
             graph.addVertex(vertex);
+            vertices.put(i, vertex);
         }
+
+        graph.addEdge(vertices.get(1), vertices.get(2));
+        graph.addEdge(vertices.get(1), vertices.get(3));
+        graph.addEdge(vertices.get(2), vertices.get(4));
+        graph.addEdge(vertices.get(3), vertices.get(5));
+        graph.addEdge(vertices.get(4), vertices.get(6));
+        graph.addEdge(vertices.get(5), vertices.get(6));
+        graph.addEdge(vertices.get(6), vertices.get(7));
+        graph.addEdge(vertices.get(7), vertices.get(8));
+
         return graph;
     }
-    void addEdges(Graph graph) {
-
-        
 
 
+    void printGraph() {
+        System.out.println("---Unidirected Graph---");
+        for (Vertex vertex : adjacencyList.keySet()) {
+            System.out.println("Vertex " + String.valueOf(vertex.id) + " has " + adjacencyList.get(vertex).toString());
+        }
+    }
+
+    void depthFirstSearch(Graph graph, Vertex root) {
+                       
     }
 
     public static void main(String[] args) {
         Graph graph = new Graph();
-        graph.createGraph();
-
+        graph = graph.createGraph();
+        graph.printGraph();
     }
 }
